@@ -56,7 +56,6 @@ public class Game implements IGame {
         System.out.println("They have rolled a " + roll);
 
         if (isCurrentPlayerOutOfPenaltyBox(currentPlayer)) {
-
             places[currentPlayer] = places[currentPlayer] + roll;
             if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
@@ -70,7 +69,6 @@ public class Game implements IGame {
             System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
             isGettingOutOfPenaltyBox = false;
             return;
-
         }
 
         isGettingOutOfPenaltyBox = true;
@@ -112,31 +110,21 @@ public class Game implements IGame {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (isCurrentPlayerOutOfPenaltyBox(currentPlayer)) {
+        boolean winner = true;
 
+        if (isCurrentPlayerOutOfPenaltyBox(currentPlayer) || isGettingOutOfPenaltyBox) {
             System.out.println("Answer was correct!!!!");
-            purses[currentPlayer]++;
-            System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer] + " Gold Coins.");
-
-            boolean winner = didPlayerWin();
-            moveToNextPlayer();
-
-            return winner;
-        }
-
-        if (isGettingOutOfPenaltyBox) {
-            System.out.println("Answer was correct!!!!");
-            purses[currentPlayer]++;
-            System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer] + " Gold Coins.");
-
-            boolean winner = didPlayerWin();
-            moveToNextPlayer();
-
-            return winner;
+            incrementCurrentUserPurse();
+            winner = didPlayerWin();
         }
 
         moveToNextPlayer();
-        return true;
+        return winner;
+    }
+
+    private void incrementCurrentUserPurse() {
+        purses[currentPlayer]++;
+        System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer] + " Gold Coins.");
     }
 
     private void moveToNextPlayer() {
