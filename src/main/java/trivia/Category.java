@@ -1,7 +1,30 @@
 package trivia;
 
 public enum Category {
-    Pop, Science, Sports, Rock;
+    Pop{
+        @Override
+        public String buildQuestion(int index) {
+            return "Pop Question " + index;
+        }
+    }, Rock {
+        @Override
+        public String buildQuestion(int index) {
+            return "Rock Question " + index;
+        }
+    }, Science {
+        @Override
+        public String buildQuestion(int index) {
+            return "Science Question " + index;
+        }
+    }, Sports {
+        @Override
+        public String buildQuestion(int index) {
+            return "Sports Question " + index;
+        }
+    };
+
+
+    public abstract String buildQuestion(int index);
 
 
     public static Category fromPlaceToCategory(int place) {
