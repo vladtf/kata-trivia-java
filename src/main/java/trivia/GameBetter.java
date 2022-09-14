@@ -1,11 +1,13 @@
 package trivia;
 
+import trivia.cr.PlayersCR;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameBetter implements IGame, Constants {
 
-	protected Players players = new Players();
+	protected PlayersCR playersCR = new PlayersCR();
 	protected List<Subject> subjectsInGame = new ArrayList<Subject>();
 
 	public GameBetter() {
@@ -26,18 +28,18 @@ public class GameBetter implements IGame, Constants {
 	}
 
 	public boolean add(String playerName) {
-		players.addPlayer(playerName);
+		playersCR.addPlayer(playerName);
 
 		System.out.println(playerName + " was added");
-		System.out.println("They are player number " + players.howManyPlayers());
+		System.out.println("They are player number " + playersCR.howManyPlayers());
 		return true;
 	}
 
 	public void roll(int roll) {
-		System.out.println(players.getCurrentPlayerName() + " is the current player");
+		System.out.println(playersCR.getCurrentPlayerName() + " is the current player");
 		System.out.println("They have rolled a " + roll);
 
-		if (players.getCurrentPlayer().isInPenaltyBox()) {
+		if (playersCR.getCurrentPlayer().isInPenaltyBox()) {
 
 			if (roll % 2 != 0) {
 
@@ -45,7 +47,7 @@ public class GameBetter implements IGame, Constants {
 				changePlayerPosition(roll);
 				askQuestion();
 
-				players.getCurrentPlayer().setPenaltyBox(false);
+				playersCR.getCurrentPlayer().setPenaltyBox(false);
 
 			} else {
 				updatePenaltyBoxStatus(false);
@@ -58,32 +60,32 @@ public class GameBetter implements IGame, Constants {
 	}
 
 	protected void updatePenaltyBoxStatus(boolean value) {
-		players.getCurrentPlayer().setGettingOutOfPenaltyBox(value);
+		playersCR.getCurrentPlayer().setGettingOutOfPenaltyBox(value);
 
-		if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
-			System.out.println(players.getCurrentPlayerName() + " is getting out of the penalty box");
+		if (playersCR.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
+			System.out.println(playersCR.getCurrentPlayerName() + " is getting out of the penalty box");
 		} else {
-			System.out.println(players.getCurrentPlayerName() + " is not getting out of the penalty box");
+			System.out.println(playersCR.getCurrentPlayerName() + " is not getting out of the penalty box");
 		}
 	}
 
 	protected void changePlayerPosition(int roll) {
-		players.updatePlayerPosition(roll);
+		playersCR.updatePlayerPosition(roll);
 
 		System.out.println(
-				players.getCurrentPlayerName() + "'s new location is " + players.getCurrentPlayer().getPosition());
+				playersCR.getCurrentPlayerName() + "'s new location is " + playersCR.getCurrentPlayer().getPosition());
 		System.out.println("The category is " + getCurrentCategory());
 	}
 
 	protected void askQuestion() {
 		for (Subject s : subjectsInGame) {
-			s.askQuestionAccordingToPosition(players.getCurrentPlayer().getPosition());
+			s.askQuestionAccordingToPosition(playersCR.getCurrentPlayer().getPosition());
 		}
 	}
 
 	protected String getCurrentCategory() {
 		for (Subject s : subjectsInGame) {
-			if (s.isPlaceFromSubject(players.getCurrentPlayer().getPosition())) {
+			if (s.isPlaceFromSubject(playersCR.getCurrentPlayer().getPosition())) {
 				return s.getName();
 			}
 		}
@@ -91,11 +93,11 @@ public class GameBetter implements IGame, Constants {
 	}
 
 	public boolean wasCorrectlyAnswered() {
-		if (players.getCurrentPlayer().isInPenaltyBox()) {
-			if (players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
+		if (playersCR.getCurrentPlayer().isInPenaltyBox()) {
+			if (playersCR.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
 				return isWinner();
 			} else {
-				players.changePlayersTurn();
+				playersCR.changePlayersTurn();
 				return true;
 			}
 		} else {
@@ -107,31 +109,31 @@ public class GameBetter implements IGame, Constants {
 		updatePurse();
 
 		boolean winner = didPlayerWin();
-		players.changePlayersTurn();
+		playersCR.changePlayersTurn();
 
 		return winner;
 	}
 
 	protected void updatePurse() {
 		System.out.println("Answer was correct!!!!");
-		players.getCurrentPlayer().updatePurse();
+		playersCR.getCurrentPlayer().updatePurse();
 		System.out.println(
-				players.getCurrentPlayerName() + " now has " + players.getCurrentPlayer().getPurse() + " Gold Coins.");
+				playersCR.getCurrentPlayerName() + " now has " + playersCR.getCurrentPlayer().getPurse() + " Gold Coins.");
 	}
 
 	public boolean wrongAnswer() {
 		System.out.println("Question was incorrectly answered");
-		System.out.println(players.getCurrentPlayerName() + " was sent to the penalty box");
+		System.out.println(playersCR.getCurrentPlayerName() + " was sent to the penalty box");
 
-		players.getCurrentPlayer().setPenaltyBox(true);
+		playersCR.getCurrentPlayer().setPenaltyBox(true);
 
-		players.changePlayersTurn();
+		playersCR.changePlayersTurn();
 
 		return true;
 	}
 
 	protected boolean didPlayerWin() {
-		return !(players.getCurrentPlayer().getPurse() == MAX_NUMBER_OF_COINS);
+		return !(playersCR.getCurrentPlayer().getPurse() == MAX_NUMBER_OF_COINS);
 	}
 
 }

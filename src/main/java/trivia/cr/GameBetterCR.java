@@ -13,16 +13,16 @@ public class GameBetterCR extends GameBetter {
 	}
 
 	public boolean isPlayable() {
-		return (players.howManyPlayers() >= MIN_NUMBER_OF_PLAYERS);
+		return (playersCR.howManyPlayers() >= MIN_NUMBER_OF_PLAYERS);
 	}
 
 	@Override
 	public boolean add(String playerName) {
 
-		if (players.isPlayerNameValid(playerName)) {
-			players.addPlayer(playerName);
+		if (playersCR.isPlayerNameValid(playerName)) {
+			playersCR.addPlayer(playerName);
 			System.out.println(playerName + " was added");
-			System.out.println("They are player number " + players.howManyPlayers());
+			System.out.println("They are player number " + playersCR.howManyPlayers());
 
 			return true;
 		}
@@ -34,7 +34,7 @@ public class GameBetterCR extends GameBetter {
 	
 	@Override
 	public void roll(int roll) {
-		if (players.getCurrentPlayer().hadSecondChance()) {
+		if (playersCR.getCurrentPlayer().hadSecondChance()) {
 			askQuestion();
 		} else {
 			super.roll(roll);
@@ -47,77 +47,77 @@ public class GameBetterCR extends GameBetter {
 		updatePurse();
 
 		boolean winner = didPlayerWin();
-		players.changePlayersTurn();
+		playersCR.changePlayersTurn();
 
 		return winner;
 	}
 
 	private void manageStreak() {
-		players.getCurrentPlayer().addOneConsecutiveCorrectAnswers();
+		playersCR.getCurrentPlayer().addOneConsecutiveCorrectAnswers();
 
-		if (players.getCurrentPlayer().getConsecutiveCorrectAnswers() == NUMBER_OF_QUESTIONS_FOR_STREAK) {
-			players.getCurrentPlayer().setOnStreak(true);
+		if (playersCR.getCurrentPlayer().getConsecutiveCorrectAnswers() == NUMBER_OF_QUESTIONS_FOR_STREAK) {
+			playersCR.getCurrentPlayer().setOnStreak(true);
 		}
 	}
 
 	@Override
 	public boolean wrongAnswer() {
 
-		if (!players.getCurrentPlayer().isInPenaltyBox()) {
+		if (!playersCR.getCurrentPlayer().isInPenaltyBox()) {
 
 			System.out.println("Question was incorrectly answered");
 
-			players.getCurrentPlayer().resetNumberOfQuestionsForStreak();
+			playersCR.getCurrentPlayer().resetNumberOfQuestionsForStreak();
 
-			if (players.getCurrentPlayer().isOnStreak()) {
+			if (playersCR.getCurrentPlayer().isOnStreak()) {
 				updateStreak();
 			} else {
 				manageSecondChanceOnWrongAnswer();
 			}
 		} else {
 			System.out.println("Player is already in penalty box!");
-			players.changePlayersTurn();
+			playersCR.changePlayersTurn();
 		}
 
 		return true;
 	}
 
 	private void updateStreak() {
-		players.getCurrentPlayer().setOnStreak(false);
-		System.out.println(players.getCurrentPlayerName() + " lost his streak");
+		playersCR.getCurrentPlayer().setOnStreak(false);
+		System.out.println(playersCR.getCurrentPlayerName() + " lost his streak");
 
-		players.changePlayersTurn();
+		playersCR.changePlayersTurn();
 	}
 
 	private void manageSecondChanceOnWrongAnswer() {
-		if (players.getCurrentPlayer().hadSecondChance()) {
-			players.getCurrentPlayer().setPenaltyBox(true);
-			System.out.println(players.getCurrentPlayerName() + " was sent to the penalty box");
-			players.getCurrentPlayer().setSecondChance(false);
+		if (playersCR.getCurrentPlayer().hadSecondChance()) {
+			playersCR.getCurrentPlayer().setPenaltyBox(true);
+			System.out.println(playersCR.getCurrentPlayerName() + " was sent to the penalty box");
+			playersCR.getCurrentPlayer().setSecondChance(false);
 
-			players.changePlayersTurn();
+			playersCR.changePlayersTurn();
 		} else {
-			players.getCurrentPlayer().setSecondChance(true);
+			playersCR.getCurrentPlayer().setSecondChance(true);
 		}
 	}
 
 	private void manageSecondChanceOnCorrectAnswer() {
-		System.out.println(players.getCurrentPlayerName() + " avoided penalty box");
-		players.getCurrentPlayer().setSecondChance(false);
-		players.changePlayersTurn();
+		System.out.println(playersCR.getCurrentPlayerName() + " avoided penalty box");
+		playersCR.getCurrentPlayer().setSecondChance(false);
+		playersCR.changePlayersTurn();
 	}
 
 	@Override
 	protected boolean didPlayerWin() {
-		return !(players.getCurrentPlayer().getPurse() >= MAX_NUMBER_OF_COINS * 2);
+		return !(playersCR.getCurrentPlayer().getPurse() >= MAX_NUMBER_OF_COINS * 2);
 	}
 
 	@Override
     public boolean wasCorrectlyAnswered() {
-        if (players.getCurrentPlayer().isInPenaltyBox() && !players.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
-            players.changePlayersTurn();
+        if (playersCR.getCurrentPlayer().isInPenaltyBox() && !playersCR.getCurrentPlayer().isGettingOutOfPenaltyBox()) {
+            playersCR.changePlayersTurn();
             return true;
-        } else if (players.getCurrentPlayer().hadSecondChance()) {
+        } else if (playersCR.getCurrentPlayer().hadSecondChance()) {
             manageSecondChanceOnCorrectAnswer();
         }
 

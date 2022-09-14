@@ -1,51 +1,83 @@
 package trivia;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Players {
+    private int currentIndex = 0;
 
-	private ArrayList<Player> players;
-	private int currentPlayerIndex;
+    private List<Player> players = new ArrayList<>();
 
-	public Players() {
-		this.players = new ArrayList<>();
-		this.currentPlayerIndex = 0;
-	}
+    public Players() {
+    }
 
-	public Player getCurrentPlayer() {
-		return players.get(currentPlayerIndex);
-	}
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
 
-	public String getCurrentPlayerName() {
-		return getCurrentPlayer().getName();
-	}
+    private Player getCurrentPlayer() {
+        return players.get(currentIndex);
+    }
 
-	public int howManyPlayers() {
-		return players.size();
-	}
+    public void moveToNextPlayer() {
+        currentIndex++;
+        if (currentIndex == players.size()) currentIndex = 0;
+    }
 
-	public boolean isPlayerNameValid(String name) {
-		for (Player player : players) {
-			if (player.getName().equals(name))
-				return false;
-		}
-		return true;
-	}
+    public int howManyPlayers() {
+        return players.size();
+    }
 
-	public void addPlayer(String playerName) {
-		players.add(new Player(playerName));
-	}
+    public boolean didCurrentPlayerWin() {
+        return getCurrentPlayer().didPlayerWin();
+    }
 
-	public void changePlayersTurn() {
-		currentPlayerIndex++;
+    public String getCurrentPlayerName() {
+        return getCurrentPlayer().getName();
+    }
 
-		if (currentPlayerIndex == howManyPlayers()) {
-			currentPlayerIndex = 0;
-		}
-	}
+    public void incrementCurrentPlayerPurse() {
+        getCurrentPlayer().incrementPurse();
+        System.out.println(getCurrentPlayerName() + " now has " + getCurrentPlayer().getPurse() + " Gold Coins.");
 
-	public void updatePlayerPosition(int roll) {
-		getCurrentPlayer().updatePosition(roll);
-	}
+    }
+
+    public void moveCurrentPlayerInPenaltyBox() {
+        getCurrentPlayer().moveInPenaltyBox();
+    }
+
+    public void moveCurrentPlayerOutOfPenaltyBox() {
+        getCurrentPlayer().moveOutOfPenaltyBox();
+    }
+
+    public boolean isCurrentPlayerInPenaltyBox() {
+        return getCurrentPlayer().isInPenaltyBox();
+    }
+
+    public boolean isCurrentPlayerNotInPenaltyBox() {
+        return !isCurrentPlayerInPenaltyBox();
+    }
+
+    public void moveCurrentPlayerToNextPlace(int roll) {
+        getCurrentPlayer().moveToNextPlace(roll);
+    }
+
+    public void confirmGettingOutOfPenaltyBox() {
+        getCurrentPlayer().setGettingOutOfPenaltyBox(true);
+    }
+
+
+    public void abortGettingOutOfPenaltyBox() {
+        getCurrentPlayer().setGettingOutOfPenaltyBox(false);
+    }
+
+    public int getCurrentPlayerPlace() {
+        return getCurrentPlayer().getPlace();
+    }
+
+    public boolean isCurrentPlayerAbleToMove() {
+        return isCurrentPlayerNotInPenaltyBox() || getCurrentPlayer().isGettingOutOfPenaltyBox();
+    }
+
 
 }
