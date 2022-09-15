@@ -17,8 +17,8 @@ public class Game implements IGame {
     public Game() {
         for (int i = 0; i < 50; i++) {
             popQuestions.add(Pop.buildQuestion(i));
-            scienceQuestions.add((Science.buildQuestion(i)));
-            sportsQuestions.add((Sports.buildQuestion(i)));
+            scienceQuestions.add(Science.buildQuestion(i));
+            sportsQuestions.add(Sports.buildQuestion(i));
             rockQuestions.add(Rock.buildQuestion(i));
         }
     }
@@ -83,16 +83,16 @@ public class Game implements IGame {
     }
 
     public boolean wasCorrectlyAnswered() {
-        boolean winner = true;
+        boolean notWon = true;
 
         if (players.isCurrentPlayerAbleToMove()) {
             System.out.println("Answer was correct!!!!");
             players.incrementCurrentPlayerPurse();
-            winner = players.didCurrentPlayerWin();
+            notWon = players.didCurrentPlayerNotWin();
         }
 
         players.moveToNextPlayer();
-        return winner;
+        return notWon;
     }
 
 

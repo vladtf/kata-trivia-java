@@ -63,9 +63,10 @@ public class Player {
         return name;
     }
 
-    public void moveToNextPlace(int roll){
+    public void moveToNextPlace(int roll) {
         setPlace(getNextPosition(roll));
     }
+
     private int getNextPosition(int roll) {
         int nextPosition = place + roll;
         if (nextPosition > 11) nextPosition = nextPosition - 12;
@@ -84,6 +85,7 @@ public class Player {
     }
 
     public boolean didPlayerWin() {
-        return getPurse() != 6;
+        return getPurse() >= 6;
     }
+
 }

@@ -6,7 +6,7 @@ import java.util.List;
 public class Players {
     private int currentIndex = 0;
 
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     public Players() {
     }
@@ -30,6 +30,10 @@ public class Players {
 
     public boolean didCurrentPlayerWin() {
         return getCurrentPlayer().didPlayerWin();
+    }
+
+    public boolean didCurrentPlayerNotWin() {
+        return !didCurrentPlayerWin();
     }
 
     public String getCurrentPlayerName() {
