@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-public abstract class Subject implements Constants {
+public abstract class SubjectCR implements ConstantsCR {
 
 	protected String name;
 	private LinkedList<String> questions;
 	protected List<Integer> subjectPositions;
 	private Properties properties;
 
-	public Subject() {
+	public SubjectCR() {
 		this.questions = new LinkedList<>();
 		subjectPositions = new LinkedList<>();
 	}
@@ -50,7 +50,7 @@ public abstract class Subject implements Constants {
 	protected void getPropertiesFile() {
 		properties = new Properties();
 		try {
-			properties.load(Subject.class.getClassLoader().getResourceAsStream(name.toLowerCase() + ".properties"));
+			properties.load(SubjectCR.class.getClassLoader().getResourceAsStream(name.toLowerCase() + ".properties"));
 		} 
 		catch (Exception ex) {
 		    ex.printStackTrace();

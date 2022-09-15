@@ -5,22 +5,22 @@ import trivia.IGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameBetter implements IGame, Constants {
+public class GameBetter implements IGame, ConstantsCR {
 
 	protected PlayersCR playersCR = new PlayersCR();
-	protected List<Subject> subjectsInGame = new ArrayList<Subject>();
+	protected List<SubjectCR> subjectsInGame = new ArrayList<SubjectCR>();
 
 	public GameBetter() {
 		createSubjects();
 		for (int i = 0; i < NUMBER_OF_QUESTIONS_PER_SUBJECT; i++) {
-			for (Subject s : subjectsInGame) {
+			for (SubjectCR s : subjectsInGame) {
 				s.addQuestion(i);
 			}
 		}
 	}
 	
 	protected void createSubjects() {
-		SubjectFactory factory = new SubjectFactory();
+		SubjectFactoryCR factory = new SubjectFactoryCR();
 		subjectsInGame.add(factory.createSubject(POP));
 		subjectsInGame.add(factory.createSubject(SCIENCE));
 		subjectsInGame.add(factory.createSubject(SPORTS));
@@ -78,13 +78,13 @@ public class GameBetter implements IGame, Constants {
 	}
 
 	protected void askQuestion() {
-		for (Subject s : subjectsInGame) {
+		for (SubjectCR s : subjectsInGame) {
 			s.askQuestionAccordingToPosition(playersCR.getCurrentPlayer().getPosition());
 		}
 	}
 
 	protected String getCurrentCategory() {
-		for (Subject s : subjectsInGame) {
+		for (SubjectCR s : subjectsInGame) {
 			if (s.isPlaceFromSubject(playersCR.getCurrentPlayer().getPosition())) {
 				return s.getName();
 			}

@@ -1,6 +1,6 @@
 package trivia.cr;
 
-public interface Constants {
+public interface ConstantsCR {
 
 	static final String POP = "Pop";
     static final String SCIENCE = "Science";

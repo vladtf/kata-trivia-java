@@ -2,11 +2,11 @@ package trivia.cr;
 
 import java.util.Arrays;
 
-public class PopSubject extends Subject {
+public class PopSubjectCR extends SubjectCR {
 
-	public PopSubject() {
+	public PopSubjectCR() {
 		super();
-		this.name = Constants.POP;
+		this.name = ConstantsCR.POP;
 		this.subjectPositions = Arrays.asList(0, 4, 8);
 		//#CR
 //		this.getPropertiesFile();

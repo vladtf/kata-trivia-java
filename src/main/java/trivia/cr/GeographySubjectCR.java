@@ -1,12 +1,12 @@
-package trivia;
+package trivia.cr;
 
-import trivia.cr.Subject;
+import trivia.cr.SubjectCR;
 
 import java.util.Arrays;
 
-public class GeographySubject extends Subject {
+public class GeographySubjectCR extends SubjectCR {
 	
-	public GeographySubject() {
+	public GeographySubjectCR() {
 		super();
 		this.name = GEOGRAPHY;
 		this.subjectPositions = Arrays.asList(11);

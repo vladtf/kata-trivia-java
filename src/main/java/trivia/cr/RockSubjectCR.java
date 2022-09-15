@@ -2,11 +2,11 @@ package trivia.cr;
 
 import java.util.Arrays;
 
-public class RockSubject extends Subject {
+public class RockSubjectCR extends SubjectCR {
 
-	public RockSubject() {
+	public RockSubjectCR() {
 		super();
-		this.name = Constants.ROCK;
+		this.name = ConstantsCR.ROCK;
 		this.subjectPositions = Arrays.asList(3, 7, 11);
 		//#CR
 		/*

@@ -1,26 +1,24 @@
 package trivia.cr;
 
 
-import trivia.GeographySubject;
+public class SubjectFactoryCR implements ConstantsCR {
 
-public class SubjectFactory implements Constants {
-
-	public Subject createSubject(String subjectType) {
+	public SubjectCR createSubject(String subjectType) {
 		
 		if (subjectType == null) {
 			return null;
 		}
 		
 		if (subjectType.equalsIgnoreCase(POP)) {
-			return new PopSubject();
+			return new PopSubjectCR();
 		} else if (subjectType.equalsIgnoreCase(SCIENCE)) {
-			return new ScienceSubject();
+			return new ScienceSubjectCR();
 		} else if (subjectType.equalsIgnoreCase(SPORTS)) {
-			return new SportsSubject();
+			return new SportsSubjectCR();
 		} else if (subjectType.equalsIgnoreCase(ROCK)) {
-			return new RockSubject();
+			return new RockSubjectCR();
 		} else if (subjectType.equalsIgnoreCase(GEOGRAPHY)) {
-			return new GeographySubject();
+			return new GeographySubjectCR();
 		}
 		
 		return null;

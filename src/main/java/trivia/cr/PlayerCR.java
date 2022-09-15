@@ -1,6 +1,6 @@
 package trivia.cr;
 
-public class PlayerCR implements Constants {
+public class PlayerCR implements ConstantsCR {
 
 	private String name;
 	private int position;

@@ -13,9 +13,9 @@ public class PlayGameCR {
 	   public static void main(String[] args) {
 
 	      System.out.println("*** Welcome to Trivia Game ***\n");
-	      System.out.println("Enter number of players: " + Constants.MIN_NUMBER_OF_PLAYERS + "-" + Constants.MAX_NUMBER_OF_PLAYERS);
+	      System.out.println("Enter number of players: " + ConstantsCR.MIN_NUMBER_OF_PLAYERS + "-" + ConstantsCR.MAX_NUMBER_OF_PLAYERS);
 	      int playerCount = Integer.parseInt(scanner.nextLine());
-	      if (playerCount < Constants.MIN_NUMBER_OF_PLAYERS || playerCount > Constants.MAX_NUMBER_OF_PLAYERS) throw new IllegalArgumentException("No player " + Constants.MIN_NUMBER_OF_PLAYERS + ".." + Constants.MAX_NUMBER_OF_PLAYERS);
+	      if (playerCount < ConstantsCR.MIN_NUMBER_OF_PLAYERS || playerCount > ConstantsCR.MAX_NUMBER_OF_PLAYERS) throw new IllegalArgumentException("No player " + ConstantsCR.MIN_NUMBER_OF_PLAYERS + ".." + ConstantsCR.MAX_NUMBER_OF_PLAYERS);
 	      System.out.println("Reading names for " + playerCount + " players:");
 
 	      IGame aGame = new GameBetterCR();

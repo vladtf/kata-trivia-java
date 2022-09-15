@@ -6,7 +6,7 @@ public class GameBetterCR extends GameBetter {
 	@Override
 	protected void createSubjects() {
 		super.createSubjects();
-		this.subjectsInGame.add(new SubjectFactory().createSubject(GEOGRAPHY));
+		this.subjectsInGame.add(new SubjectFactoryCR().createSubject(GEOGRAPHY));
 	}
 
 	public boolean isPlayable() {

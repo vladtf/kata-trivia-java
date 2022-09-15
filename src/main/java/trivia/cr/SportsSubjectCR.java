@@ -2,11 +2,11 @@ package trivia.cr;
 
 import java.util.Arrays;
 
-public class SportsSubject extends Subject {
+public class SportsSubjectCR extends SubjectCR {
 
-	public SportsSubject() {
+	public SportsSubjectCR() {
 		super();
-		this.name = Constants.SPORTS;
+		this.name = ConstantsCR.SPORTS;
 		this.subjectPositions = Arrays.asList(2, 6, 10);
 		//#CR
 //		this.getPropertiesFile();
