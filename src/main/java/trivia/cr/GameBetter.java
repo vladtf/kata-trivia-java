@@ -1,6 +1,6 @@
-package trivia;
+package trivia.cr;
 
-import trivia.cr.PlayersCR;
+import trivia.IGame;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,5 @@
 package trivia.cr;
 
-import trivia.Constants;
 import trivia.IGame;
 
 import java.util.Random;

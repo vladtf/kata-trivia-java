@@ -1,9 +1,6 @@
 package trivia.cr;
 
 
-import trivia.GameBetter;
-import trivia.SubjectFactory;
-
 public class GameBetterCR extends GameBetter {
 
 	@Override

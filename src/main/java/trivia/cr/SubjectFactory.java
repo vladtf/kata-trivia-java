@@ -1,5 +1,7 @@
-package trivia;
+package trivia.cr;
 
+
+import trivia.GeographySubject;
 
 public class SubjectFactory implements Constants {
 

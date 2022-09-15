@@ -1,4 +1,4 @@
-package trivia;
+package trivia.cr;
 
 import java.util.Arrays;
 
@@ -6,7 +6,7 @@ public class RockSubject extends Subject {
 
 	public RockSubject() {
 		super();
-		this.name = ROCK;
+		this.name = Constants.ROCK;
 		this.subjectPositions = Arrays.asList(3, 7, 11);
 		//#CR
 		/*

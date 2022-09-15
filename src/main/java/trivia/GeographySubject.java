@@ -1,6 +1,6 @@
 package trivia;
 
-import trivia.Subject;
+import trivia.cr.Subject;
 
 import java.util.Arrays;
 

@@ -1,7 +1,5 @@
 package trivia.cr;
 
-import trivia.Constants;
-
 public class PlayerCR implements Constants {
 
 	private String name;

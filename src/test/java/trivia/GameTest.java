@@ -1,8 +1,8 @@
 
 package trivia;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import trivia.cr.GameBetter;
 
 
 import java.io.ByteArrayOutputStream;
